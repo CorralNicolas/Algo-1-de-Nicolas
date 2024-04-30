@@ -7,7 +7,8 @@
 
 relacionesValidas ::  [(String,String)] -> Bool
 relacionesValidas [] = True
-relacionesValidas [t] = True
+relacionesValidas [t] | fst t == snd t = False 
+    | fst t /= snd t = True
 relacionesValidas (x:y:xs) | fst x == snd x = False
     | fst y == snd y = False
     | fst x == fst y && snd x == snd y = False
