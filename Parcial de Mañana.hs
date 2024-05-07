@@ -20,7 +20,8 @@ loQueMasHayQueCodificarAux zs (x:y:xs) ys | cuantasVecesHayQueCodificar x zs ys 
     |otherwise = loQueMasHayQueCodificarAux zs (y:xs) ys
 
 loQueMasHayQueCodificar :: [Char] -> [(Char,Char)] -> Char
-loQueMasHayQueCodificar _ [] = ' '
+{-Correcion para que devuelva el primer elemento de la lista, ya que si no se modifica ninguno, solo quiero el primero-}
+loQueMasHayQueCodificar (x:xs) [] = x
 loQueMasHayQueCodificar xs ys = loQueMasHayQueCodificarAux xs xs ys
 
 codificarFrase :: [Char] -> [(Char,Char)] -> [Char]
