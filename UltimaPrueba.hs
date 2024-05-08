@@ -32,10 +32,6 @@ precioTotal (a,b) ((c,d):ys) | a == c = fromInteger b * d
 {-aplicarOferta : lista char x entero cantidad,, lista char x  float precio, lista de char x float precio con descuento dependiendo-}
 
 aplicarOferta :: [([Char],Integer)] -> [([Char],Float)] -> [([Char],Float)]
-aplicarOferta [] _ = []
-aplicarOferta ((a,b):xs) precios | b > 10 = (a,precioDe a precios * 0.8) : aplicarOferta xs precios
-    |otherwise = (a,precioDe a precios) : aplicarOferta xs precios
-
-precioDe :: [Char] -> [([Char],Float)] -> Float
-precioDe x ((a,b):xs) | x == a = b
-    | otherwise = precioDe x xs 
+aplicarOferta _ [] = []
+aplicarOferta productos ((a,b):precios) | stockDeProducto productos a > 10 = (a, b * 0.8) : aplicarOferta productos precios
+    |otherwise = (a,b) : aplicarOferta productos precios
