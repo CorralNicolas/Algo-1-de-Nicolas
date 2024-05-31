@@ -47,14 +47,16 @@ def contarlineas(nombre:str) -> int:
 
 print(contarlineas("nuevoarchivo.txt"))
 
-def clonar_sin_comentarios(nombre:str) -> list[str]:
-    archivo = open(nombre,"r")
+def clonar_sin_comentarios(nombre:str):
+    archivo = open(f"{nombre}","r")
     contenido = archivo.readlines()
     archivoclonado = []
     for i in contenido:
-        if i[0] == "#":
+        if i[0] != "#":
             archivoclonado.append(i)
-    open("archivoclonado.txt","x")
-    open("archivoclonado","w")
-    archivoclonado.write(archivoclonado)
-    archivoclonado.close
+    archivo.close()
+    archivoclonadito = open("archivoclonado.txt","x")
+    archivoclonadito.writelines(archivoclonado)
+    archivoclonadito.close()
+
+clonar_sin_comentarios("archivonuevo.txt")
